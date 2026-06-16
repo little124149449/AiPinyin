@@ -1081,7 +1081,10 @@ mod tests {
         assert!(!ai.is_available());
         let history = HistoryBuffer::new(10);
         let cands = vec!["\u{662f}".into(), "\u{65f6}".into(), "\u{5341}".into()];
-        let result = ai.rerank("shi", cands.clone(), &history);
+        //let result = ai.rerank("shi", cands.clone(), &history);
+        // 把history转成字符串再传引用
+let ctx_str = history.to_string();
+let result = ai.rerank("shi", cands.clone(), &ctx_str);
         assert_eq!(result, cands);
     }
 }
